@@ -1,175 +1,248 @@
-<meta charset="utf-8">
-<title>GopherKon</title>
-<meta name="description" content="GopherKon (Gopher Konstructor): Go mascot image constructor. Create your cute own gopher.">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<meta property="og:title" content="GopherKon">
-<meta property="og:type" content="website">
-<meta property="og:description" content="Gopher Konstructor: Go mascot image constructor. Create your cute own gopher.">
-<meta property="og:url" content="https://quasilyte.dev/gopherkon/">
-<meta property="og:image" content="https://quasilyte.dev/gopherkon/logo.png">
-<meta property="og:locale" content="en_US">
+  <title>GopherKon</title>
+  <meta name="description" content="GopherKon (Gopher Konstructor): Go mascot image constructor. Create your cute own gopher.">
 
-<style>
-* {
-    font-size: 13px;
-    color: #335d7b;
-    font-family: -apple-system,BlinkMacSystemFont,Roboto,Open Sans,Helvetica Neue,sans-serif;
-    font-weight: 400;
-}
+  <meta property="og:title" content="GopherKon">
+  <meta property="og:type" content="website">
+  <meta property="og:description" content="Gopher Konstructor: Go mascot image constructor. Create your cute own gopher.">
+  <meta property="og:url" content="https://quasilyte.dev/gopherkon/">
+  <meta property="og:image" content="https://quasilyte.dev/gopherkon/logo.png">
+  <meta property="og:locale" content="en_US">
 
-body {
-    background-color: #edeef0;
-    margin: 0;
-}
+  <style>
+    * {
+      font-size: 13px;
+      color: #335d7b;
+      font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif;
+      font-weight: 400;
+      box-sizing: border-box;
+    }
 
-button {
-    all: unset;
-}
+    body {
+      background-color: #edeef0;
+      margin: 0;
+    }
 
-.back {
-    width: 100%;
-    background: #4a76a8;
-    height: 42px;
-    padding-left: 16px;
-    border-bottom: 1px solid #4872a3;
-    margin-bottom: 8px;
-    line-height: 42px;
-}
+    button {
+      all: unset;
+    }
 
-#selfref {
-    font-size: 16pt;
-    text-decoration: none;
-    color: white !important;
-    font-weight: 600;
-}
+    .back {
+      width: 100%;
+      background: #4a76a8;
+      min-height: 42px;
+      padding: 8px 16px;
+      border-bottom: 1px solid #4872a3;
+      margin-bottom: 8px;
+      line-height: 42px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
 
-.controlref {
-    font-size: 13pt;
-    color: #c0cfe1 !important;
-    padding: 6px;
-    background-color: #224b7a;
-    border-radius: 14px;
-}
+    #selfref {
+      font-size: 16pt;
+      text-decoration: none;
+      color: white !important;
+      font-weight: 600;
+      margin-right: 16px;
+    }
 
-#gopher {
-    width: 490px;
-    height: 570px; /* 600 - 30 */
-    overflow: hidden;
-    position: relative;
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-}
+    .controlref {
+      font-size: 13pt;
+      color: #c0cfe1 !important;
+      padding: 6px 10px;
+      background-color: #224b7a;
+      border-radius: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
 
-#option-tabs {
-    width: 342px;
-    height: 554px; /* 600 - 46 */
-    border-radius: 4px;
-    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-    padding: 8px;
-}
+    .controlref:hover {
+      background-color: #2d5d97;
+    }
 
-#tab-selector {
-    background-color: #fff;
-    border-radius: 4px;
-    box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
-}
+    #main-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 8px;
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-.image-layer {
-    position: absolute;
-}
+    #gopher {
+      width: 490px;
+      height: 570px;
+      overflow: hidden;
+      position: relative;
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    }
 
-td {
-    padding: 0;
-}
+    #option-tabs {
+      width: 342px;
+      height: 554px;
+      border-radius: 4px;
+      box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+      padding: 8px;
+      background-color: #fff;
+      overflow-y: auto;
+    }
 
-td button {
-    cursor: pointer;
-    text-decoration: none;
-    display: block;
-    padding-left: 18px;
-    line-height: 31px;
-    width: 96px;
-}
+    #tab-selector {
+      background-color: #fff;
+      border-radius: 4px;
+      box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+    }
 
-td button:hover {
-    background-color: #f0f2f5;
-}
+    td {
+      padding: 0;
+    }
 
-.option-link {
-    display: inline-block;
-    width: 110px;
-    height: auto;
-    cursor: pointer;
-}
+    td button {
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      padding-left: 18px;
+      line-height: 31px;
+      width: 96px;
+    }
 
-.option-link img:hover {
-    background-color: #f0f2f5;
-}
+    td button:hover {
+      background-color: #f0f2f5;
+    }
 
-.option-link img {
-    text-decoration: none;
-    width: 110px;
-    height: auto;
-    border-bottom: 1px solid #dfe2e8;
-    background-color: #fff;
-}
+    .option-link {
+      display: inline-block;
+      width: 110px;
+      height: auto;
+      cursor: pointer;
+    }
 
-.option-tab {
-    display: none;
-    overflow-y: scroll;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-}
+    .option-link img:hover {
+      background-color: #f0f2f5;
+    }
 
-.option-selected {
-    background-color: #f0f2f5 !important;
-}
+    .option-link img {
+      text-decoration: none;
+      width: 110px;
+      height: auto;
+      border-bottom: 1px solid #dfe2e8;
+      background-color: #fff;
+    }
 
-.tab-selected {
-    background-color: #f0f2f5;
-    border-left: 2px solid #5181b8;
-    color: black;
-    font-weight: 500;
-    padding-left: 16px;
-}
+    .option-tab {
+      display: none;
+      overflow-y: scroll;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+    }
 
-</style>
+    .option-selected {
+      background-color: #f0f2f5 !important;
+    }
 
-<div class="back">
+    .tab-selected {
+      background-color: #f0f2f5;
+      border-left: 2px solid #5181b8;
+      color: black;
+      font-weight: 500;
+      padding-left: 16px;
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 1024px) {
+      #gopher {
+        width: 80vw;
+        height: auto;
+      }
+
+      #option-tabs {
+        width: 80vw;
+        height: auto;
+      }
+
+      #tab-selector {
+        width: 80vw;
+      }
+
+      .back {
+        flex-direction: column;
+        line-height: normal;
+      }
+    }
+
+    @media (max-width: 600px) {
+      * {
+        font-size: 11px;
+      }
+
+      #selfref {
+        font-size: 14pt;
+        margin-bottom: 4px;
+      }
+
+      .controlref {
+        font-size: 11pt;
+        padding: 5px 8px;
+      }
+
+      #gopher, #option-tabs, #tab-selector {
+        width: 95vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="back">
     <a id="selfref" href="">Gopher Konstructor</a>
-    <a style="margin-left: 16px" id="download" class="controlref" href="" download="gopher.png">Download PNG</a>
+    <a id="download" class="controlref" href="" download="gopher.png">Download PNG</a>
     <a id="share" class="controlref" title="Copy permalink to clipboard" href="#">Share</a>
     <a id="shuffle" class="controlref" title="Randomize the gopher appearance" href="#">Shuffle</a>
-    <a class="controlref" title="Produced images are free for any use" href="https://github.com/quasilyte/gopherkon/blob/master/LICENSE">See license</a>
-    <a class="controlref" title="Ask a question / Propose a new feature / Report a bug" href="https://github.com/quasilyte/gopherkon/issues/new">Leave feedback</a>
-</div>
+    <a class="controlref" title="Produced images are free for any use" href="https://github.com/quasilyte/gopherkon/blob/master/LICENSE">License</a>
+    <a class="controlref" title="Ask a question / Propose a new feature / Report a bug" href="https://github.com/quasilyte/gopherkon/issues/new">Feedback</a>
+  </div>
 
-<div style="width: 1100px; height: 490px; margin-left: 16px">
-    <canvas width=490 height=570 style="position: relative; float: left" id="gopher"></canvas>
+  <div id="main-container">
+    <canvas width="490" height="570" id="gopher"></canvas>
 
-    <div id="option-tabs" style="float: left">
-        <div id="colorOptionTab" class="option-tab"></div>
-        <div id="eyesOptionTab" class="option-tab"></div>
-        <div id="poseOptionTab" class="option-tab"></div>
-        <div id="torsoOptionTab" class="option-tab"></div>
-        <div id="earsOptionTab" class="option-tab"></div>
-        <div id="noseOptionTab" class="option-tab"></div>
-        <div id="undernoseOptionTab" class="option-tab"></div>
-        <div id="teethOptionTab" class="option-tab"></div>    
-        <div id="mouthOptionTab" class="option-tab"></div>    
-        <div id="eyewearOptionTab" class="option-tab"></div>
-        <div id="accessoryOptionTab" class="option-tab"></div>
-        <div id="extrasOptionTab" class="option-tab"></div>
-        <div id="tattooOptionTab" class="option-tab"></div>
-        <div id="hairOptionTab" class="option-tab"></div>
-        <div id="hatOptionTab" class="option-tab"></div>
+    <div id="option-tabs">
+      <div id="colorOptionTab" class="option-tab"></div>
+      <div id="eyesOptionTab" class="option-tab"></div>
+      <div id="poseOptionTab" class="option-tab"></div>
+      <div id="torsoOptionTab" class="option-tab"></div>
+      <div id="earsOptionTab" class="option-tab"></div>
+      <div id="noseOptionTab" class="option-tab"></div>
+      <div id="undernoseOptionTab" class="option-tab"></div>
+      <div id="teethOptionTab" class="option-tab"></div>
+      <div id="mouthOptionTab" class="option-tab"></div>
+      <div id="eyewearOptionTab" class="option-tab"></div>
+      <div id="accessoryOptionTab" class="option-tab"></div>
+      <div id="extrasOptionTab" class="option-tab"></div>
+      <div id="tattooOptionTab" class="option-tab"></div>
+      <div id="hairOptionTab" class="option-tab"></div>
+      <div id="hatOptionTab" class="option-tab"></div>
     </div>
 
-    <div style="margin-left: 8px; float: left">
-        <table cellspacing="0" id="tab-selector"></table>
+    <div>
+      <table cellspacing="0" id="tab-selector"></table>
     </div>
-</div>
+  </div>
 
-<script src="app.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -616,13 +616,16 @@ namespace App {
         document.body.removeChild(el);
     }
 
-    function initShareButton() {
-        let share = document.getElementById("share");
-        share.onclick = function() {
-            let url = "https://quasilyte.dev/gopherkon/?state=" + stateString({});
-            copyToClipboard(url);
-        };
-    }
+function initShareButton() {
+    let share = document.getElementById("share");
+    share.onclick = function() {
+        // Gunakan domain aktif (misalnya dari vercel)
+        let url = window.location.origin + "/?state=" + stateString({});
+        copyToClipboard(url);
+        alert("Permalink copied to clipboard!");
+    };
+}
+
 
     function getOptionsList(key: string) {
         for (let tab of app.state.tabSelection) {

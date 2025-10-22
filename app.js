@@ -578,7 +578,7 @@ var App;
     function initShareButton() {
         let share = document.getElementById("share");
         share.onclick = function () {
-            let url = "https://quasilyte.dev/gopherkon/?state=" + stateString({});
+            let url = window.location.origin + "/?state=" + stateString({});
             copyToClipboard(url);
         };
     }
