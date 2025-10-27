@@ -65,6 +65,7 @@ var App;
     const gopherMouthList = [
         "sprites/none.png",
         "sprites/mouth/grin.png",
+        "sprites/mouth/pumfun.png",
         "sprites/mouth/lol.png",
         "sprites/mouth/shout.png",
         "sprites/mouth/surprised.png",
